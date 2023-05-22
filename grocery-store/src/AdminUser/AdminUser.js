@@ -1,26 +1,29 @@
 import React from 'react'
 import { useState } from 'react'
+import { gstoreAPIs } from '../APIs/gstoreAPIs'
 
 const AdminUser = () => {
-    const [category, setCategory]=useState('')
+    const [catName, setCategory]=useState('')
     const onSubmit= (e)=>{
         e.preventDefault()
-        const categoryData ={
-            category
-        }
+        const categoryData =[{
+            catName
+        }]
 
         handleChange(categoryData)
+        console.log(JSON.stringify(categoryData));
     }
     
     async function  handleChange (categoryData){
+        await gstoreAPIs.addCategory(categoryData)
 
     }
   return (
     <div>
         <h1>Add Category</h1>
-        <form>
-            <input type= "text" name="category" onChange={(e)=>{setCategory(e.target.value)}} value={category}></input>
-            <input type="submit" onSubmit={onSubmit}>Add Category</input>
+        <form onSubmit={onSubmit}>
+            <input type= "text" name="catName" onChange={(e)=>{setCategory(e.target.value)}} value={catName}></input>
+            <input type="submit" value="Add Category"></input>
         </form>
     </div>
   )

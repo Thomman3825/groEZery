@@ -1,13 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { gstoreAPIs } from '../APIs/gstoreAPIs'
 import s from "./style.module.css"
+import { useNavigate } from 'react-router'
+import { Form } from 'react-bootstrap/Form'
 
 const Registration = () => {
+    const navigate = useNavigate()
     const [userName,setName]=useState('')
     const [email,setEmail]=useState('')
     const [password,setPass]=useState('')
     const [fullName, setFullName]= useState('')
     const [userType, setUserType]=useState('')
+
+    useEffect(()=>{
+        navigate("/registration")
+    },[])
+    
 
 //    const formEl = document.querySelector('.form')
 
@@ -43,6 +51,7 @@ userType
     // console.log(name)
   return (
     <div className={s.Container}>
+        <h1>Register</h1>
         <form onSubmit={onSubmit}>
             <label htmlFor="FullName">Enter name:</label>
             <input type="text" name="FullName" onChange={(e)=>{setFullName(e.target.value)}} value={fullName}></input>
@@ -55,12 +64,13 @@ userType
 
             <label htmlFor="password">Enter password:</label>
             <input type="password" name="Password" onChange={(e)=>{setPass(e.target.value)}} value={password} ></input>
-
-            <select name= "userType" onChange={(e)=>{setUserType(e.target.value)}} value={userType}>
+                
+                <div className={s.SelectContainer}>
+            <select className={s.Select} name= "userType" onChange={(e)=>{setUserType(e.target.value)}} value={userType}>
                 <option value="vendor" >Vendor</option>
                 <option value="customer">Customer</option>
             </select>
-
+               </div>
             <input type="submit" value="Register" onSubmit={handleChange}></input>
         </form>
 
