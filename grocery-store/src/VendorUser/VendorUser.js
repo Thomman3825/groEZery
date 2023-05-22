@@ -7,6 +7,7 @@ const VendorUser = () => {
     const [stock, setStock]=useState('')
     const [catId, setCat]=useState('')
     const [catList, setCatList]=useState([])
+    const [status, setStatus]=useState(false)
 
     async function getCategories(){
         
@@ -24,22 +25,43 @@ useEffect(() => {
        
     }
      getCategory()
-     console.log(catList);
+    // console.log(catList);
 },[])
+
+const onSubmit=(e)=>{
+e.preventDefault()
+const category={catId}
+const product=[{
+    prodName,
+    price,
+    stock,
+    category
+}]
+handleChange(product)
+console.log(product);
+}
+async function handleChange(productData){
+    console.log(productData);
+    const res = await gstoreAPIs.addProduct(productData)
+    console.log(res.status);
+}
   return (
     <div>
         <h1>Add Product</h1>
-        <form>
+        <form onSubmit={onSubmit}>
+            <label>Product Name:</label>
             <input type="text" name="prodName" value={prodName} onChange={(e)=>setProdName(e.target.value)}></input>
 
+            <label>Price:</label>
             <input type="text" name="price" value={price} onChange={(e)=>setPrice(e.target.value)}></input>
 
+            <label>Stock:</label>
             <input type="text" name="stock" value={stock} onChange={(e)=>setStock(e.target.value)}></input>
 
             <select value={catId} onChange={(e)=>setCat(e.target.value)}>
                 {catList && catList.map((cat)=><option key={cat.catId} value={cat.catId}>{cat.catName}</option>)}
             </select>
-            <input type ="submit" value="Add Product"></input>
+            <input type ="submit" value="Add Product" onSubmit={handleChange}></input>
         </form>
 
 

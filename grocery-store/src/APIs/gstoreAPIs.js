@@ -13,11 +13,12 @@ export class gstoreAPIs{
     }
 
     static async addCategory(categoryData){
-        await fetch("http://localhost:1998/addCategory", {
+        const res =await fetch("http://localhost:1998/addCategory", {
             method:'POST',
             headers:{'Content-Type':'application/json'},
             body: JSON.stringify(categoryData)
         })
+        return res
     }
     static async getCategory(){
         const res =await fetch("http://localhost:1998/getCategory")
@@ -27,8 +28,13 @@ export class gstoreAPIs{
         
     }
 
-    static async addProduct(){
-        
+    static async addProduct(productData){
+        const res =await fetch("http://localhost:1998/products", {
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body: JSON.stringify(productData)
+        })
+        return res
     }
 }
 // https://cors-anywhere.herokuapp.com/
