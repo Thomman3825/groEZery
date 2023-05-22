@@ -45,5 +45,23 @@ input[type=text], input[type=password], input[type=email] {
     font-family: Arial;
    background-color: #f1f1f1;
   }
-  
+
+  .SecondContainer{
+    display: flex;
+  }
+.GoToLogin{
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+}
+.GoToLogin:hover{
+opacity: 1;
+}
+.Status{
+    flex: 2;
+}
   

@@ -11,9 +11,11 @@ const Registration = () => {
     const [password,setPass]=useState('')
     const [fullName, setFullName]= useState('')
     const [userType, setUserType]=useState('')
+    const [status, setStatus]=useState(false)
 
     useEffect(()=>{
         navigate("/registration")
+        setStatus(false)
     },[])
     
 
@@ -38,20 +40,39 @@ userType
     
     // const data = new URLSearchParams(formData)
     handleChange(formData)
-   console.log(JSON.stringify(formData) )
+    //showStatus()
+   //console.log(JSON.stringify(formData) )
 
 }
     
 
     async function handleChange(formData){
-        await gstoreAPIs.addUser(formData)
+        const res =await gstoreAPIs.addUser(formData)
+        if (res.status===200){
+            setStatus(true)
+            console.log("User Added");
+        }
 
+    }
+    const showStatus=()=>{
+        if (status){
+            return "User Added"
+        }
+        else {
+            return "User Not Added"
+        }
+    }
+
+    const goToLogin=()=>{
+
+        navigate("/")
     }
 
     // console.log(name)
   return (
     <div className={s.Container}>
         <h1>Register</h1>
+        <div>
         <form onSubmit={onSubmit}>
             <label htmlFor="FullName">Enter name:</label>
             <input type="text" name="FullName" onChange={(e)=>{setFullName(e.target.value)}} value={fullName}></input>
@@ -73,7 +94,15 @@ userType
                </div>
             <input type="submit" value="Register" onSubmit={handleChange}></input>
         </form>
-
+        </div>
+        <div className={s.SecondContainer}>
+        
+            {status && <div className={s.Status}> {showStatus()}</div>}
+        
+        
+            {status && <button className={s.GoToLogin} onClick={goToLogin}>Go to Login</button>}
+        
+        </div>
     </div>
   )
 }
