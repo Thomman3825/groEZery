@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,10 +21,12 @@ public class OrderCart {
     boolean isPlaced;
 
     @OneToOne(fetch = FetchType.LAZY,optional = false)
-    @JoinColumn(name="userId",nullable = false)
+    @JoinColumn(name="user_id",nullable = false)
     private User user;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "prodId",orphanRemoval = true) //has to be checked
-    private List<Product> product;
+    @OneToMany
+    //has to be checked
+    private List<CartItem> cartItems;
+
 
 }

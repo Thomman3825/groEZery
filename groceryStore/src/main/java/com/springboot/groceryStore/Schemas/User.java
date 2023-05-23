@@ -14,6 +14,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Getter
 @Setter
+
 public class User {
     @Id
     @GeneratedValue

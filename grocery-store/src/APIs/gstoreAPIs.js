@@ -36,5 +36,22 @@ export class gstoreAPIs{
         })
         return res
     }
+
+    static async getProducts(){
+        const res =await fetch ("http://localhost:1998/getProducts")
+        const data = await res.json ()
+        return data
+    }
+    
+    static async addToCart(productData){
+const res = await fetch ("http://localhost:1998/addToCart", {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify(productData)
+})
+const data = await res.json()
+return data
+    }
+    
 }
 // https://cors-anywhere.herokuapp.com/

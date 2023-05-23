@@ -6,6 +6,8 @@ import VendorUser from './VendorUser/VendorUser';
 import { ReactDOM } from 'react';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import Login from './Login/Login';
+import CustomerUser from './CustomerUser/CustomerUser';
+import Cart from './Cart/Cart';
 
 
 function App() {
@@ -17,6 +19,8 @@ function App() {
       <Route path='registration' element={<Registration></Registration>}></Route>
       <Route path='Admin' element={<AdminUser></AdminUser>}></Route>
       <Route path='Vendor' element={<VendorUser></VendorUser>}></Route>
+      <Route path="Customer" element={<CustomerUser></CustomerUser>}></Route>
+      <Route path="Cart" element={<Cart></Cart>}></Route>
       </Routes>
     </div>
     </BrowserRouter>

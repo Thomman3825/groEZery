@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -19,10 +21,9 @@ public class Product {
     String ProdName;
     int stock;
     double price;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="catId")
     private Category category;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    private OrderCart orderCart;
+
 }

@@ -6,6 +6,7 @@ const VendorUser = () => {
     const [price, setPrice]=useState('')
     const [stock, setStock]=useState('')
     const [catId, setCat]=useState('')
+    const [catName, setCatName]=useState('')
     const [catList, setCatList]=useState([])
     const [status, setStatus]=useState(false)
 
@@ -25,20 +26,24 @@ useEffect(() => {
        
     }
      getCategory()
-    // console.log(catList);
+     console.log(catList);
 },[])
+
 
 const onSubmit=(e)=>{
 e.preventDefault()
-const category={catId}
+const category={catId,catName}
+const orderCart =[]
 const product=[{
     prodName,
     price,
     stock,
-    category
+    category,
+    orderCart
 }]
 handleChange(product)
 console.log(product);
+console.log(catId);
 }
 async function handleChange(productData){
     console.log(productData);
